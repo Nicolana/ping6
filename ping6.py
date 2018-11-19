@@ -32,7 +32,7 @@ def checkSum(message):
 def rawSocket(dst_addr, icmpv6_packet):
 	sendSocket = socket.socket(socket.AF_INET6, socket.SOCK_RAW, socket.getprotobyname('ipv6-icmp'))
 	send_time = time.time()
-	sendSocket.sendto(icmpv6_packet, (dst_addr, 1))
+	sendSocket.sendto(icmpv6_packet, socket.getaddrinfo(dst_addr, 1)[0][4])
 	return send_time, sendSocket
 
 def pseudo_header(s_addr, dst_addr, upper_packet_len, n_header = 58):
